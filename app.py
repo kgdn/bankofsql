@@ -1,5 +1,11 @@
-from flask import Flask, render_template, request
+
+# Bank of SQotLand (BOSQL) - A simple web application that demonstrates how not to handle user input and database queries.
+# Author: Kieran Gordon <kjg2000@hw.ac.uk>
+# Date: 2024-02-29
+# Licensed under the GNU Affero General Public License v3.0. See LICENSE for details.
+
 import sqlite3
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -124,4 +130,7 @@ def withdraw():
     return render_template('dashboard.html', user=user)
 
 if __name__ == '__main__':
+    """Run the application. This is the main entry point for the application. It will start the server and listen for requests.
+    Better yet, it runs in debug mode, so you can see all the errors in the console. What could go wrong?
+    """
     app.run(debug=True)
