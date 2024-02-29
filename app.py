@@ -19,6 +19,12 @@ def index():
 
 @app.route('/register', methods=['GET'])
 def register_user():
+    """Register a new user. I love Raw SQL, don't you? It's so safe and secure!
+
+    Returns:
+        render_template: Register page if no arguments are passed
+        render_template: Login page if user is registered
+    """
     if 'email' not in request.args or 'password' not in request.args or 'first_name' not in request.args or 'last_name' not in request.args or 'dob' not in request.args:
         return render_template('register.html')
     first_name = request.args['first_name']
@@ -28,6 +34,7 @@ def register_user():
     dob = request.args['dob']
     conn = sqlite3.connect('bankofsql.db')
     c = conn.cursor()
+    # For anyone who's not familiar with SQL Injection, this is a prime example of how not to handle user input. Please don't do this.
     c.executescript("INSERT INTO user (first_name, last_name, email, password, dob, balance) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', 0)".format(first_name, last_name, email, password, dob))
     conn.commit()
     conn.close()
@@ -35,6 +42,12 @@ def register_user():
 
 @app.route('/login', methods=['GET'])
 def login_user():
+    """Login as a user. Note that we are not using sessions, so this is not a secure way to handle logins.
+
+    Returns:
+        render_template: Login page if no arguments are passed
+        render_template: Dashboard page if user is logged in
+    """
     if 'email' not in request.args or 'password' not in request.args:
         return render_template('login.html')
     email = request.args['email']
@@ -50,10 +63,22 @@ def login_user():
 
 @app.route('/logout', methods=['GET'])
 def logout_user():
+    """Log out of the system. Of course since we are not using sessions, this is not really necessary.
+    For all intensive purposes, anyone who's serious about making a website should just use sessions.
+    But for the sake of this example, we will just redirect to the login page. Please, never do this in production.
+
+    Returns:
+        render_template: Login page
+    """
     return render_template('index.html')
 
 @app.route('/add_card', methods=['GET'])
 def add_card():
+    """Add a card to a user's account. This is definitely safe and secure, right? Right...?
+
+    Returns:
+        render_template: Dashboard page
+    """
     user_id = request.args.get('user_id')
     card_number = request.args.get('card_number')
     expiry_date = request.args.get('expiry_date')
@@ -68,6 +93,11 @@ def add_card():
 
 @app.route('/deposit', methods=['GET'])
 def deposit():
+    """Deposit money into a user's account. Note that no money is actually being deposited, so rest assured that this is a safe and secure transaction.
+
+    Returns:
+        render_template: Dashboard page
+    """
     amount = request.args['amount']
     conn = sqlite3.connect('bankofsql.db')
     c = conn.cursor()
@@ -79,6 +109,11 @@ def deposit():
 
 @app.route('/withdraw', methods=['GET'])
 def withdraw():
+    """Withdraw money from a user's account. Where does the money go? Who knows! It's a mystery!
+
+    Returns:
+        render_template: Dashboard page
+    """
     amount = request.args['amount']
     conn = sqlite3.connect('bankofsql.db')
     c = conn.cursor()
