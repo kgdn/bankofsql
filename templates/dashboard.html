@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}
+Dashboard
+{% endblock %}
+{% block content %}
+
+<!-- (1, 'a', 'a', 'a', 'a', '2024-02-29', None, None, None, '0') from print(user) -->
+<!-- use index to access the user data -->
+<div id="main">
+    <div class="container">
+        <div class="row">
+            <h2>Dashboard</h2>
+            <p>Welcome, {{ user[1] }}!</p>
+            <p>Your current balance is: £{{ user[9] }}</p>
+            <p>Your account details are as follows:</p>
+            <br>
+            <table class="table">
+                <tr>
+                    <th>Credit Card</th>
+                    <th>CVV</th>
+                    <th>Expiration Date</th>
+                </tr>
+                <tr>
+                    <td>{{ user[3] }}</td>
+                    <td>{{ user[4] }}</td>
+                    <td>{{ user[5] }}</td>
+                </tr>
+            </table>
+            <br>
+            <hr>
+            <br>
+            <form action="/deposit" method="get" class="account-form">
+                <div class="form-group">
+                    <label for="amount">Deposit Amount</label>
+                    <input type="text" class="form-control" id="amount" name="amount">
+                    <input type="hidden" name="user_id" value="{{ user[0] }}">
+                    <button type="submit">Deposit</button>
+                </div>
+            </form>
+            <form action="/withdraw" method="get" class="account-form">
+                <div class="form-group">
+                    <label for="amount">Withdraw Amount</label>
+                    <input type="text" class="form-control" id="amount" name="amount">
+                    <input type="hidden" name="user_id" value="{{ user[0] }}">
+                    <button type="submit">Withdraw</button>
+                </div>
+            </form>
+            <br>
+            <form action="/add_card" method="get" class="account-form">
+                <div class="form-group">
+                    <label for="card_number">Card Number</label>
+                    <input type="text" class="form-control" id="card_number" name="card_number">
+                    <label for="expiry_date">Expiry Date</label>
+                    <input type="text" class="form-control" id="expiry_date" name="expiry_date">
+                    <label for="cvv">CVV</label>
+                    <input type="text" class="form-control" id="cvv" name="cvv">
+                    <input type="hidden" name="user_id" value="{{ user[0] }}">
+                    <button type=" submit">Add Card</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

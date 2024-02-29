@@ -1,0 +1,84 @@
+#header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: blue;
+}
+
+#header-links {
+    display: flex;
+    gap: 10px;
+    color: white;
+}
+
+#header-links a {
+    color: white;
+    text-decoration: none;
+}
+
+#header-links a:hover {
+    text-decoration: underline;
+}
+
+#header-links a:active {
+    color: red;
+}
+
+#header-links a:visited {
+    color: white;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table th {
+    background-color: blue;
+    color: white;
+}
+
+.table th,
+.table td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table tr:hover {
+    background-color: #ddd;
+}
+
+.account-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+}
+
+.account-form input {
+    padding: 10px;
+}
+
+.account-form button {
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.account-form button:hover {
+    background-color: #003366;
+}
+
+.account-form button:active {
+    background-color: #000080;
+}
+
+.account-form button:focus {
+    outline: none;
+}

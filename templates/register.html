@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}
+Register
+{% endblock %}
+{% block content %}
+<!-- URL in the form of /register?first_name=John&last_name=Doe&password=1234&email=johndoe%40example.com&dob=01-01-1990 -->
+<div id="main">
+    <div class="container">
+        <div class="row">
+            <h2>Register</h2>
+            <form action="/register" method="get" class="account-form">
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name">
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" class="form-control" id="dob" name="dob">
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <p>{{ error }}</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
